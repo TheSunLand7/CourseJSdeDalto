@@ -1,0 +1,1247 @@
+* {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 30px;
+    scroll-behavior: smooth;
+}
+
+/*
+Outline
+Es como un "border", pero no modifica a la caja propia ni a las demas cajas. No ocupa un espacio real. Solo resalta.
+
+
+/*.caja1 {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    margin: auto; Esto coloca en el centro de la pagina al elemento
+    border: 10px solid blue; No se modifica el contenido, ni añade dimensiones solo remarca.
+    box-sizing: content-box; No se modifica el contenido
+}*/
+
+
+/*
+* Position: relative
+Cuando posicionamos un elemento estamos asignandole 5 propiedades ["top", "right", "bottom", "left", "z-index"],
+donde el top y el left tienen mayor prioridad. Estos no se aplican si el elemento no esta posicionado.
+Cuando aplicamos estas propiedades, solo afecta al elemento con el que estamos trabajando y su espacio
+reservado se mantiene; es decir, si bajamos a un elemento en 300px, el anterior elemento no ocupara su lugar.
+div {
+    width: 120px;
+    height: 120px;
+    display: block;
+}
+
+.caja1 {
+    box-sizing: border-box;
+    border: 4px solid black;
+    background-color: red;
+}
+.caja2 {
+    background-color: green;
+    position: relative;
+    top: 60px;
+    left: 20px;
+    z-index: 100; Permite que el elemento se "dibuje" por encima del que tiene menos valor z-index. Sin embargo, existen problemas cuando intentamos hacer esto con un contenedor padre y un contenedor hijo. Si queremos hacer que el contenedor padre se dibuje sobre el hijo, solo será posible cuando al z-index del hijo tenga un valor de "-1" y al padre no agregarle la propiedad z-index.
+}
+.caja3 {
+    box-sizing: border-box;
+    border: 4px solid black;
+    background-color: blue;
+    position: relative;
+    z-index: 10;
+}
+.caja4 {
+    background-color: yellow;
+}*/
+
+/*
+* Position: Absolute
+Cuando aplicamos esta propiedad, a diferencia con el relative, el espacio ya no se reserva; por ende, el elemento siguiente ocupa
+el lugar del elemento. [Es como libros apilados, si sacas uno entre el primero y el ultimo, el libro siguiente ocupa su lugar].
+
+
+.contenedor {
+    background-color: green;
+    width: 450px;
+    height: 450px;
+    margin: 150px auto; Eje "y" | Eje "x". El "auto" solo funciona con el eje "x".
+    position: relative; Para que los hijos lo tomen como referencia y no al viewport.
+    border: 5px solid red;
+}
+
+.hijo {
+    position: absolute;
+    background-color: yellow;
+    width: 120px;
+    height: 120px;
+}
+
+.caja2 {
+    right: 0;
+}
+
+.caja3 {
+    bottom: 0;
+    left: 0;
+}
+
+.caja4 {
+    right: 0;
+    bottom: 0;
+}
+
+.caja5 {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}*/
+
+
+/*
+* Position: fixed
+Es casi lo mismo que el "absolute", pero el elemento queda fijado. Esto se aplica generalmente a los menus o publicidad.
+Como el elemento queda fijado, cuando realizamos un scroll el resto del contenido se desplaza menos el elemento "fixed".
+
+
+body {
+    padding-top: 100px;
+}
+.caja-fixed {
+    background: red;
+    position: fixed;
+    margin-top: -100px;    
+}*/
+
+/*
+* Position: sticky
+Es como una mezcla entre el "relative" y el "fixed". Es decir, mantiene su espacio y queda fijo al scrolear.
+
+.caja-fixed {
+    background: red;
+    position: sticky;
+    opacity: .3;
+    top: 0;
+}*/
+
+/*
+* Display
+La propiedad display modifica el comportamiento de las cajas en si, no la interaccion entre cajas.
+
+display: inline-block, a diferencia de "block", con este valor podemos modificar las dimensiones de la caja.
+
+
+b {
+    width: 150px;
+    height: 150px;
+    border: 10px solid red;
+    margin: 20px;
+    background-color: yellow;
+    display: inline-block;
+}*/
+
+/*
+* Overflow
+Permite que el contenido de una caja se pueda scrolear, que este escondida o visible(sobresale la caja).
+
+
+p {
+    width: 380px;
+    height: 340px;
+    background-color: gray;
+    border: 8px solid red;
+    margin: 100px auto;
+    overflow: scroll;
+}*/
+
+/*
+* Float
+Nos puede servir para hacer que el texto y una imagen se complementen correctamente en una caja.
+
+
+.cont {
+    width: 50%;
+    height: 600px;
+    border: 10px solid red;
+    background-color: gray;
+    overflow: auto;
+    margin: 100px auto;
+}
+
+img {
+    width: 360px;
+    height: 350px;
+    position: relative;
+    outline: 5px solid blue;
+    float: right;
+    margin: 20px;
+}*/
+
+/*
+* Pseudo-elementos
+No forman parte del DOM, pero si podemosmm ver cambios visuales.
+::first-line -->Solo funciona con elementos de bloque ["block", "inline-block"]. Para la primera linea del elemento.
+::first-letter--> Para la primera letra.--^
+
+
+.texto {
+    padding: 20px;
+}
+
+.texto::first-line {
+    color: rgb(17, 52, 211);
+}*/
+
+/*
+::placeholder-->Texto que aparecen en el input y se borra cuando se escribe sobre ellas.
+::selection-->Cuando seleccionamos el elemento se genera esta propiedad y podemos modificarla. Se comporta como un elemento
+en linea y las propiedades son limitadas.
+
+
+form {
+    margin: 100px auto;
+    width: 50%;
+    padding: 90px;
+    background-color: gray;
+}
+
+input {
+    padding: 12px;
+    width: 100%;
+}
+
+input::placeholder {
+    color: red;
+}
+
+input::selection {
+    background-color: black;
+    color: green;
+}*/
+
+/*
+::after-->Elemento en lineay bloque. Necesitan de la propiedad "content". Crea "hijos" al elemento aplicado que se puede modificar.
+::before-->Elemento en lineay bloque. Necesitan de la propiedad "content". Crea "hijos" al elemento aplicado que se puede modificar.
+Estos no pertenecen al DOM y no se les puede seleccionar. Con estos se pueden hacer iconos basicos y animaciones tambien.
+
+
+form {
+    margin: 100px auto;
+    width: 50%;
+    padding: 90px;
+    background-color: gray;
+}
+
+b {
+    padding: 12px;
+    width: 100%;
+}
+
+b::before {
+    content: "Me suscribi ";
+    color: #fff;
+}
+
+b::after {
+    content: " soy dalto";
+    color: blueviolet;
+}*/
+
+/*
+* Pseudo-clases
+Las pseudo clases nos permiten "escuchar" eventos como el ":hover".
+
+:hover--> Escucha el evento cuando el mouse esta encima del elemento.
+
+
+.caja1 {
+    width: 200px;
+    height: 200px;
+    background-color: slateblue;
+    transition: background-color 1s, width 1s, height 1s; /*Esta propiedad nos permite modificar la velocidad de las 
+                                                            transiciones principalmente en el :hover
+}
+
+.caja1:hover {
+    background-color: darkslateblue;
+    width: 300px;
+    height: 300px;
+}*/
+
+/*
+:link-->Moficar un link que todavia no hemos visitado.
+:visited-->Modificar un link ya visitado.
+:active-->Al dejar apretado el boton de click, se cambian los estilos.
+:focus-->Se aplica mas a los elementos "inputs". Cuando el input esta seleccionado con el mouse, se aplica.
+:lang-->Es una funcion que modifica el elemento que esta en un lenguaje determinado. Esta funcion recibe un parametro, el
+cual es el idioma como "es" para español, "en" para ingles, etc.
+
+.caja1 {
+    margin: 30px;
+    display: inline-block;
+}
+
+.caja1:link {
+    color: red; Cuando visitemos la pagina, ya no estara de color rojo
+}
+
+.caja1:visited {
+    color: violet;
+}
+
+.caja {
+    margin: 50px;
+    width: 300px;
+    height: 300px;
+    background-color: red;
+    transition: all 1s;
+}
+
+.caja:active {
+    background-color: blue;
+    width: 600px;
+}
+
+
+.caja {
+    margin: 50px;
+    background-color: lightgray;
+    transition: background-color 1s, padding 1s;
+}
+.caja:focus {
+    background-color: white;
+    padding: 20px;
+}
+
+.caja {
+    margin: 50px;
+}
+
+.caja b:lang(es) {
+    background-color: blue;
+    color: white;
+}*/
+
+/*
+* Object-fit
+Se aplica a las imagenes principalmente.
+object-fit: contain-->Ajusta la imagen a sus resoluciones reales.
+object-fit: cover-->Ajusta la imagen al contenedor y recorta bordes.
+object-fit: none-->Coloca la resolucion original de la imagen.
+object-fit: scale-down-->Se queda con la resolucion mas baja entre "none" y "contain".
+
+* Object-position
+object-position: left--->Muestra mas la parte izquierda de la imgaen. Y esto sucede con los demas valores [right, top, bottom]
+
+
+.caja {
+    margin: 50px;
+    width: 300px;
+    height: 460px;
+}
+
+.caja img{
+    border: 5px solid blue;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right;
+}*/
+
+/*
+* Cursor
+Permite cmabiar de estilos al cursor cuando este sobre algun elemento.
+
+
+.caja {
+    margin: 40px;
+    border: 5px solid red;
+    width: 300px;
+    height: 320px;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.caja:active {
+    cursor: grabbing;
+}*/
+
+/*
+* Colores
+Explica la manera correcta de escribir los colores en todos los sistemas.
+
+
+body {
+    background-color: #f00;
+}
+
+.caja {
+    margin: 40px;
+    border: 5px solid red;
+    width: 300px;
+    height: 320px;
+    background-color: #fff;
+    cursor: pointer;
+}*/
+
+/*
+* Responsive Design-->Cuando adaptamos una pagina web para dispositivos mobiles o tablets.
+
+Realizaremos un menu-responsive como ejemplo.
+
+
+Lo escondemos porque solo va a aparecer cuando especifiquemos una resolucion
+.nav__responsive-ul {
+    display: none;
+}
+
+
+
+.nav {
+    margin-top: -30px; do not know how this happens. Need to be fixed!
+    background-color: rgb(38, 21, 122);
+}
+
+.nav__li {
+    display: inline-block;
+    padding: 9px;
+    color: #fff;
+}
+
+.nav__li:hover {
+    color: #ccc;
+}
+
+.nav__li:hover a {
+    color: #ccc;
+}
+
+.nav__li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav__li i {
+    text-align: center;
+    margin-right: 8px;   
+}
+
+
+.nav__responsive-button-container {
+    position: absolute;
+    margin-top: -75px;
+    width: 100%;
+    z-index: 100;
+}
+
+.nav__responsive-button i{
+    float: right;
+    font-size: 45px;
+    padding: 15px 95px;
+    transition: color 0.4s;
+}
+
+.nav__responsive-button:hover i {
+    cursor: pointer;
+    color: #fff;
+}
+
+@media only screen and (max-width: 730px) {
+    .nav__ul {
+        display: none;
+    }
+    
+    .nav {
+        height: 105px;
+        width: 100%;
+        background-color: #69c;
+    }
+
+    .nav__responsive-ul {
+        display: block;
+        position: absolute;
+        width: 100%;  
+        height: 105px;
+        margin-top: 105px;
+        margin-left: -40px;
+    }
+
+    .nav__responsive-ul:hover > .nav__li-container {
+        top: 0px;
+        width: 75%;
+        height: 100%;
+        background-color: #26a;
+    }
+    .nav__li-container {
+        position: relative;
+        top: -500px;
+        width: 75%;
+        height: 100%;
+        transition: all 1s;
+        background-color: #69c;
+        z-index: 1;
+    }
+
+    .nav__responsive-li {
+        width: 100%;
+        padding: 9px 20px;
+        list-style-type: none;
+    }
+    .nav__responsive-li i {
+        text-align: center;
+        box-sizing: border-box;
+        margin-right: 8px;
+        width: 30px;
+        color: #016;
+    }
+
+    .nav__responsive-li a {
+        color: #016;
+        text-decoration: none;
+        transition: 0.4s;
+    }
+
+    .nav__responsive-li:hover a {
+        color: #fff;
+    }
+}*/
+
+/*
+* Flex-box
+Es la manera en la que se maqueta la web hoy.
+->Flex requiere de 2 cosas [flex-container, flex-item].
+->Contiene 2 ejes [main axis(eje x), main cross(eje y)].
+->Los flex items son los "hijos" directos de un flex container, los "niteos" no cuentan.
+->Cuando modificamos los flex-items, no se modifica el height, lo que hace es ajustarse al contenido.
+
+---***--PROPIEDADES DE CONTAINER--***----
+---ALineaciones en el main acces.
+flex-direction--->Nos permite cambiar la direccion del main axis. Pueden ser [row, column, reverse].
+flex-wrap: wrap--->Permite que las cajas mantengan su tamaño original al reducir la resolucion de la pagina y las vaya
+acomodando hacia abajo sin alterar el tamaño.
+flex-flow: flex-direction flex-wrap--->Un shorthand de las anteriores.
+justify-content--->Trabaja con el contenido con los valores [center, space-around, space-between, space-evenly].
+
+---alineaciones en el cross axis.
+align-items--->Se aplica cuando hay solamente una linea de flex-items (fila).
+align-content--->Se aplica cuando hay mas de una linea de flex-items. Permite que cuando las
+cajas vayan a la segunda linea, no se vayan muy abajo.
+
+
+---***--PROPIEDADES DE ITEMS--***----
+flex-grow-->Utiliza el espacio sobrante y lo reparte con las cajas sobrantes.
+flex-basis-->Es similar al "width" normal, solo que es mas importante que este.
+flex-shrink--->Cede mas espacio a las demas cajas restantes, y el se achica.
+order--->Es como el z-index, mientrasa el valor sea mas alto, este ira al final de la direccion del main axis.
+
+
+.flex-container {
+    align-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.flex-item {
+    flex-basis: 150px;
+    height: 120px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #248;
+    color: #fff;
+    text-align: center;
+    flex-grow: 1;
+
+}
+
+.orange {
+    background-color: orange;
+    flex-shrink: 2;
+    order: 4;   
+}
+
+.green {
+    background-color: green;
+}*/
+
+
+/*
+OWNER
+
+
+body {
+    background-color: #000;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #444;
+    margin: 50px 30px;
+    padding: 20px;
+    flex-direction: row-reverse;
+}
+
+.form {
+    padding: 30px;
+    min-width: 400px;
+    flex: 1;
+    text-align: right;
+    order: 5;
+}
+
+.form__input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    background-color: transparent;
+    border-bottom: 5px solid #066;
+}
+
+.form__input:focus {
+    outline: none;
+    background: linear-gradient(to bottom, transparent, #222);
+    border-bottom: 5px solid #069;
+    color: #fff;
+}
+
+.form textarea {
+    min-height: 150px;
+    resize: none;
+}
+
+.form-img {
+    flex: 1;
+    display: flex;
+    padding: 10px;
+    min-width: 300px;
+    max-width: 400px;
+    order: 2;
+}
+
+.form-img div {
+    padding: 10px;
+}
+
+.form-img img {
+    width: 90%;
+}
+
+.img-container {
+    margin: auto;
+}
+
+.img-container div {
+    padding: 20px;
+    background-color: #066;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.img-container div:hover {
+    background-color: #069;
+}
+
+.form input[type="submit"] {
+    background-color: #066;
+    padding: 12px;
+    border-bottom: none;
+    color: #fff;
+}
+
+.form input[type="submit"]:hover {
+    background-color: #069;
+    border-bottom: none;
+    cursor: pointer;
+}
+*/
+
+/*
+* GRID
+Grid container--> Son como una tabla dividida en cuadrados.
+Grid items--> Son los items que estan dentro del container, los "nietos" no cuentan.
+Grid track--> Son las columnas y las filas.
+Grid area--> Son consecutivas y pueden abarcar muchas celdas.
+Grid line--> Son las lineas vericales y horizontales.
+
+****************PROPIEDADES**********************
+################Container########################
+grid-template-columns---> Para darle el numero de columnas que queremos.
+grid-template-rows---> Para darle el numero de filas que queremos.
+fr--> Es como el flex-grow.
+grid-row-gap-->Es como un margin entre filas, no se separa de los bordes.
+grid-column-gap--> Es como un margin entre columnas, no se separa de los bordes.
+gap---> Es el shorthand de los 2 anteriores. Primero va las filas y luego las columnas o un solo valor para ambos.
+
+################Items#############################
+grid-column/grid-row---> Nos permite personalizar el tamaño de las celdas a ocupar por un item. linea start / linea end.
+span--> Nos indica el numero de filas o columnas a ocupar.
+
+* GRID explicito e implicito.
+Cuando se agrega mas elementos al grid, estos salen del formato grid y alojan como filas (grid implicito).
+grid-auto-columns/grid-auto-rows---> Permite modificar esos elementos que salieron del formato grid.
+grid-auto-flow: columns;---> Permite que las filas se comporten como columnas.
+
+* GRID dinamico.
+Posee estructuras autoaujustables como en el uso del <<flex-grow/fr>>.
+minmax(min, max)--->Suele trabajar como 2do parametro del repeat(), y marca el tamaño minimo y maximo de una celda.
+max-content/min-content--->El tamaño maximo y minimo de una celda.
+autofill--> Si se agranda el area grid, este permitira agregar mas columnas si el tamaño llena el area requerida.
+
+body {
+    background: radial-gradient(circle, #fff,#bbb);
+}
+
+.grid-container {
+    margin: 50px;
+    background-color: #333;
+    outline: 10px solid #000;
+    display: grid; Esto por defecto crea una sola columna sin filas. Se comporta como un elemento de bloque.
+    grid-template-rows: repeat(4, 150px);
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    grid-auto-flow: dense; Rellena los espacios vacios mas cercano al elemento con el que trabajamos
+    grid-auto-flow: column;
+    grid-auto-columns: 200px;
+}
+
+.grid-item {
+    border: 2px solid #000;
+    background-color: #999;
+}
+
+.grid-item:first-child {
+    background-color: #900;
+    grid-column: 1 / span 2;
+    grid-row: 1 / 3;
+}
+
+.grid-item:nth-child(2) {
+    background-color: #ca2;
+    grid-column: 3 / 5;
+    grid-row: 1 / 3;
+}*/
+
+/*
+* ALineacion y control de flujo.
+Permite controlar el contenido y las celdas mismas(items) de forma vertical u horizontal.
+justify-items---> Justifica horizontalmente.[center, baseline, end, start, etc]
+align-items--> Alinea verticalmente.
+
+**ALineacion de filas y columnas. Se mueven en bloque(ver el ejemplo).
+Permite controlar las filas y columnas.
+justify-content--> Alinea horizontalmente.
+align-content--> Alinea verticalmente.
+A los 2 de arriba tambien aceptan [space-around, space-between, space-evenly], como el flex.
+
+**Aplicado al GRID item; es decir, celda por celda.
+align-self--> ALinea de manera vertical.
+justify-self--> Alinea de manera horizontal.
+place-self--> align-self justify-self. Es el shortform de las 2 anteriores.
+order--->Funciona igual que flex (investigar un poco  mas al respecto).
+
+
+body {
+    background: radial-gradient(circle, #fff,#bbb);
+}
+
+.grid-container {
+    display: grid; 
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    margin: 50px;
+    background-color: #333;
+    outline: 10px solid #000;
+    grid-auto-flow: dense;
+    justify-content: center;
+    align-content: center;
+    height: 800px;
+    justify-items: center;
+    align-items: center;
+}
+
+.grid-item {
+    border: 2px solid #000;
+    background-color: #999;
+    font-size: 50px;
+    padding: 60px;
+    cursor: pointer;
+}
+
+.grid-item:first-child {
+    align-self: flex-start;
+    justify-self: flex-start;
+    background-color: #941;
+}
+
+.grid-item:nth-child(4):hover {
+    background-color: #48e;
+    cursor: pointer;
+}
+
+.grid-item:nth-child(3) {
+    align-self: flex-start;
+    justify-self: flex-end;
+    background-color: #941;
+}
+
+.grid-item:nth-child(5) {
+    background-color: #397;
+}
+
+.grid-item:nth-child(7) {
+    align-self: flex-end;
+    justify-self: flex-start;
+    background-color: #941;
+}
+
+.grid-item:last-child {
+    justify-self: flex-end;
+    align-self: flex-end;
+    background-color: #941;
+}*/
+
+/*
+*Creacion de una galeria.
+
+
+body {
+    background: radial-gradient(circle, #fff,#bbb);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 100px;
+    gap: 10px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+img:first-child {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+}
+
+img:nth-child(7) {
+    grid-column: 2 / span 2;
+    grid-row: 3 / span 2;
+}*/
+
+/*
+*GRID area
+Se puede nombrar a las filas y columnas con "[]".
+
+
+body {
+    background: radial-gradient(circle, #fff,#bbb);
+}
+
+.grid-container {
+    display: grid;
+    margin: 15px;
+    grid-template-areas: 
+    "header header header"
+    "aside main main"
+    "aside main main"
+    "aside main main"
+    "aside main main"
+    "footer footer footer";
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    grid-template-rows: repeat(auto-fill, 1fr);
+    outline: 5px solid #000;
+}
+
+.grid-items {
+    padding: 20px;
+}
+
+.grid-header {
+    background-color: #481;
+    grid-area: header;
+
+}
+
+.grid-aside {
+    background-color: #937;
+    grid-area: aside;
+}
+
+.grid-main {
+    background-color: #219;
+    grid-area: main;
+}
+
+.grid-footer {
+    background-color: #29d;
+    grid-area: footer;
+
+}
+
+ul li {
+    display: inline-block;
+    
+}
+
+a {
+    color: #000;
+############################################3
+
+body {
+    background: radial-gradient(circle, #fff,#bbb);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 
+            [f-line]
+            200px
+            [s-line]
+            200px
+            [t-line]
+            200px;
+    grid-template-rows: repeat(3, 200px);
+    border: 5px solid #000;
+    background-color: #444;
+    margin: 60px;
+}
+
+.grid-item {
+    background-color: #bbb;
+    border: 1px solid #000;
+}
+
+.grid-item:first-child {
+    background-color: #c00;
+    grid-column: f-line / t-line;
+    grid-row: 1 / span 2;
+}
+*/
+
+/*
+*Responsive design
+
+.header, .main, .aside, .footer {
+    padding: 20px;
+}
+
+.container-responsive {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    background-color: #28e;
+    flex-basis: 60px;
+}
+
+.main {
+    background-color: #086;
+    flex-basis: 300px;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.aside {
+    background-color: #829;
+    flex-basis: 200px;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.footer {
+    background-color: #c92;
+    flex-grow: 1;
+
+}
+
+############Flex###############
+
+@media screen and (min-width: 700px) {
+    .container-responsive {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .main, .aside {
+        height: 730px; ##NO es una manera optima de hacerlo
+    }
+
+    .main {
+        flex-grow: 4;
+    }
+
+    .aside {
+        flex-grow: 1;
+    }
+
+    .header {
+        flex-basis: 100%;
+        max-height: 60px;
+    }
+
+    .footer {
+        flex-basis: 100%;
+    }
+}
+
+###################GRID#################
+
+@media screen and (min-width: 700px) {
+    .container-responsive {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 80px repeat(3, 1fr) 80px;
+    }
+
+    .header {
+        grid-column: 1 / span 3;    
+    }
+
+    .main {
+        grid-column: 1 / span 2;
+        grid-row: 2 / span 4;
+    }
+
+    .aside {
+        grid-column: 3 / span 1;
+        grid-row: 2 / span 4;
+    }
+
+    .footer {
+        grid-column: 1 /span 3;
+        grid-row: 5 / span 1;
+    }
+}*/
+
+/*
+*Transiciones
+
+trasition-property: all/none|propiedad en especifico (esto es más recomendable)
+transition-duration: seconds
+transition-delay: delays (cuanto debe tardar para que la transicion se ejecute)
+transition-timing-function: linear | ease | ease-in | ease-out | ease-in-out | step-start | step-end |...(investigar)
+transition: "Es el shorthand de las anteriores."
+
+
+.container {
+    background-color: #86f;
+    height: 300px;
+    padding: 50px;
+}
+
+.caja {
+    background-color: #c22;
+    height: 100px;
+    width: 100px;
+}*/
+
+/*
+*Animaciones
+Se les define con @KeysFames "nombre"
+
+animation-name: name
+animation-duration: durations
+animation-delay: delays
+animation-timing-function: values
+animation-direction: normal | reverse | alternate
+animation-iteration-count: number (cuantas veces se repite la animacion)
+animation-fill-mode: none | forwards (se queda como el final) | backwards | both(obliga a tomar el valor inicial de la animacion) | initial | inherit.
+
+
+.container {
+    background-color: #86f;
+    height: 200px;
+    padding: 50px;
+}
+
+.caja {
+    background-color: #c22;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    animation-name: desplazarse;
+    animation-duration: 3s;
+    animation-iteration-count: 3;
+    animation-timing-function: ease;
+}
+
+@keyframes desplazarse {
+    ##1 forma
+    from {
+        left: 0;
+        background-color: green;
+    }
+    to {
+        left: 80%;
+        background-color: yellow;
+    }
+
+    ##2 forma-->Aqui se tiene mas libertad
+    0% {
+        left: 0;
+        background-color: green;
+    }
+    50% {
+        background-color: blue;
+    }
+    100% {
+        left: 80%;
+        background-color: yellow;
+    }
+}*/
+
+/*
+*Transformaciones
+Nos permite transformar el objeto de varias formas.
+transform: translateX/Y(unidades(+/-))-->Nos permite trasladar un elemento en el eje "X" e "Y".
+transform: scaleX/Y(unidades)-->Nos permite agrandar o achicar el elemento.
+transform: skew(unidades(deg))-->Nos permite deformar el elemento.
+clip-path-->Para dar una forma mas especifica.
+
+
+.container {
+    background-color: #86f;
+    padding: 50px;
+}
+
+.caja {
+    background-color: #c22;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    margin: 20px;
+    transition: transform 2s;
+    clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+}
+
+b {
+    margin: auto;
+    transform: skew(-30deg); Para que el contenido no se deforme
+}
+
+.caja:hover {
+    transform: translateX(300px) scaleX(2) skew(30deg);
+}*/
+
+/*
+*Background
+background-repeat: repeat/no-repeat-->Permite repetir la imagen o no.
+background-clip: border-box | padding-box | content-box. Se recorta la imagen para obtener el valor deseado.
+background-origin-->Lo mismo que clip, pero no se recorta la imagen, se origina a partir del valor asignado.
+background-attachment: scroll | fixed | inherit.
+
+
+.container {
+    background-color: #28e;
+    width: 360px;
+    height: 360px;
+    transform: translate(80px, 80px);
+    background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp2048465.jpg&f=1&nofb=1);
+    background-size: cover; Valores sacados del object-fit
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-attachment: fixed;
+}*/
+
+/*
+*VARIABLES
+Para utilizarlas como valores de las propiedades.
+--Globales
+--Locales
+
+
+:root {
+    --color-rojo: #f00;
+}
+
+div {
+    padding: 20px;
+    width: 150px;
+    height: 150px;
+    margin: 30px;
+}
+
+.container {
+    background-color: #139;
+}
+
+.container-2 {
+    background-color: var(--color-rojo);
+}
+*/
+
+/*
+* FILTER
+blur(px)-->Desenfoca el elemento
+brightness(0-1)-->Brillo
+contrast(number or <<%>>)-->Contraste
+drop-shadow(px px px color)-->Crea una sombra al elemente similar al box-shadow.
+
+.container {
+    filter: drop-shadow(1);
+    
+}
+
+
+.container {
+    background-color: #fff;
+    filter: contrast(10);
+}
+
+.caja {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    background-color: #f00;
+    margin: 80px;
+    border-radius: 50%;
+    filter: blur(10px);
+}
+
+.caja:first-child {
+    animation: move 1.5s alternate infinite;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(240px);
+        background-color: #f00;
+    }
+}
+*/
+
+/*
+* OTRAS COSAS mas a agregar.
+direction: ltr | rtl --->De que lado se quiere empezar, desde la derecha o desde la izquierda.
+letter-spacing--->Separa las letras.
+scroll-behavior--->Permite que el scroll sea mejor con los valores que se les da, por ejemplo <<smooth>>. Se lo da al body
+user-selected: none---> No le permitimos al que seleccione el texto.
+
+
+.container {
+    padding: 20px;
+    background-color: #59f;
+    direction: ltr;
+    letter-spacing: 4px;
+    user-select: none;
+}
+*/
+
+/*
+* BUILDING A WEB PAGE CASERO.
+*/
